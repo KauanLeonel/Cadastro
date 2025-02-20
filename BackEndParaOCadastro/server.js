@@ -1,12 +1,12 @@
 import express from "express"
-
+import cors from 'cors'
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
 
 const app = express()
 const porta = 3000;
 app.use(express.json()) //O express normalmente não usa json, por isso precisamos avisá-lo
-
+app.use(cors())
 
 app.post('/user', async(req, res) =>{
 
@@ -18,7 +18,7 @@ app.post('/user', async(req, res) =>{
         }
     })
 
-    users.push(req.body)//enviar
+    //user.push(req.body)//enviar
     res.status(201).json(req.body)
 })
 
@@ -30,7 +30,7 @@ app.get('/user', async(req, res) =>{
 
 app.put('/user/:id', async(req, res) =>{
 
-    await prisma.user.uptade({
+    await prisma.user.update({
         where:{
             id: req.params.id
         },
@@ -54,7 +54,10 @@ app.delete('/user/:id', async(req,res) =>{
     })
     res.status(200).send({message: "Usuário deletado com sucesso"})
 })
-app.listen(porta)
+
+app.listen(porta, () => {
+    console.log(`Servidor rodando na porta ${porta}`);
+})
 
 /*
     Bora criar uma API de usuários

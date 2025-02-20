@@ -13,3 +13,8 @@ Currently, two official plugins are available:
  Para importar imagens para JSX, deve-se importar a imagem usando import "var" from "local dela", olhar o button trash no index da home.
 
  clt + d : seleciona vários itens iguais.
+
+ Rodar o server.js : node --watch server.js
+ Rodar o front: npm run dev
+
+ No react, caso você queira que uma var mude em tempo real, deve-se usar o useState
