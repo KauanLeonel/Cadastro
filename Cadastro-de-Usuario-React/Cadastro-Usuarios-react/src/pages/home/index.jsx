@@ -1,9 +1,16 @@
-import { useEffect, useState, useRef } from "react"; //React Hooks
-import "./style.css";
-import Trash from "../../assets/trash.svg";
-import api from '../../services/api'
+/*O famoso react: Uma mistura de HTML, CSS, entre outras coisas.  */
 
+import { useEffect, useState, useRef } from "react"; //React Hooks, as ferramentas do react
+/*
+useEffect: permite executar efeitos colaterais
+usestate: Permite a var mudar de acordo com as interações do site, sem precisar reiniciar a página
+useRef: Serve para pegar as váriaveis dentro do button
+*/
+import "./style.css"; //Importando o css
+import Trash from "../../assets/trash.svg"; //Importando o icon de lixo
+import api from '../../services/api' //Importando a API
 
+//Função principal
 
 function Home() {
   const [users, setUsers] = useState([]) //Estado da variável com o estado
