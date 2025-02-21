@@ -14,39 +14,39 @@ import api from '../../services/api' //Importando a API
 
 function Home() {
   const [users, setUsers] = useState([]) //Estado da variável com o estado
-  const inputName = useRef()
-  const inputAge = useRef()
-  const inputEmail = useRef()
+  const inputName = useRef() //Usando o useRef para pegar a var de um input
+  const inputAge = useRef() //Usando o useRef para pegar a var de um input
+  const inputEmail = useRef() //Usando o useRef para pegar a var de um input
 
 
   async function getUsers(){
-    const usersFromApi =await api.get('/user')
+    const usersFromApi =await api.get('/user') //Pegando os usuarios
     setUsers (usersFromApi.data)
   }
 
   async function createUsers(){
-    await api.post('/user',{
+    await api.post('/user',{ //postando os dados
       name: inputName.current.value,
       email: inputEmail.current.value,
       age: inputAge.current.value
     })
-    getUsers()
+    getUsers() //Atualizando os usuários na página
   }
 
   async function deleteUsers(id){
-    await api.delete(`/user/${id}`)
-    getUsers()
+    await api.delete(`/user/${id}`) //deletando com base no id
+    getUsers() //Atualizando os usuários na página
   }
 
-  useEffect(() =>{
+  useEffect(() =>{ //Assim que tudo for montado ele chama os usuários. Mais profissional que só chamar a função
     getUsers();
   }, [])
 
-  return (
+  return ( //Parte do HTML
     <div className="container">
       <form>
         <h1>Cadastro de Usuários</h1>
-        <input placeholder="Nome" type="text" name="name" ref={inputName} />
+        <input placeholder="Nome" type="text" name="name" ref={inputName} />  
         <input placeholder="Idade" type="number" name="age" ref={inputAge}/>
         <input placeholder="Email" type="email" name="email" ref={inputEmail}/>
         <button type="button" onClick={createUsers}>Cadastrar</button>
